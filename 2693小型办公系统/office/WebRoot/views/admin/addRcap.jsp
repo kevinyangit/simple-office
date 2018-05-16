@@ -16,19 +16,16 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="${domain}/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="${domain}/assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="${domain}/assets/css/paper-dashboard.css" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="${domain}/assets/css/demo.css" rel="stylesheet" />
-
-    <!--  Fonts and icons     -->
-    <link href="${domain}/assets/css/themify-icons.css" rel="stylesheet">
+<%--     <link href="${domain}/assets/css/bootstrap.min.css" rel="stylesheet" />
+ --%>
+     <script src="${domain}/assets/new/jquery.min.js"></script>  
+	<script src="${domain}/js/layer.js"></script>
+    <link href="${domain}/assets/new/bootstrap.min.css" rel="stylesheet">  
+    <script src="${domain}/assets/new/bootstrap.min.js"></script>  
+  
+    <script src="${domain}/assets/new/moment-with-locales.min.js"></script>  
+    <link href="${domain}/assets/new/bootstrap-datetimepicker.min.css"  rel="stylesheet">  
+    <script src="${domain}/assets/new/bootstrap-datetimepicker.min.js"></script>  
 
 </head>
 <body>
@@ -51,8 +48,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>时间</label>
-                                                <input type="text" class="form-control border-input" placeholder="时间"  id="time">
+                                            <label for="date1">选择日期：</label>  
+								            <div class="input-group date">  
+								                <input type="text" class="form-control" id='time'>  
+								                <span class="input-group-addon">  
+								                    <i class="glyphicon glyphicon-calendar"></i>  
+								                </span>  
+								            </div>  
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -82,29 +84,13 @@
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="${domain}/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="${domain}/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="${domain}/assets/js/bootstrap-checkbox-radio.js"></script>
-
-	<!--  Charts Plugin -->
-	<script src="${domain}/assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="${domain}/assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
-
-    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="${domain}/assets/js/paper-dashboard.js"></script>
-
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="${domain}/assets/js/demo.js"></script>
-	<script src="${domain}/js/layer.js"></script>
+    
 	<script type="text/javascript">
+	    $('#time').datetimepicker({    
+	        format: 'YYYY-MM-DD HH:mm:ss',    
+	        locale: moment.locale('zh-cn')    
+	    });    
 	function update(){
 			var username = document.getElementById("account").value;
 			var time = document.getElementById("time").value;
