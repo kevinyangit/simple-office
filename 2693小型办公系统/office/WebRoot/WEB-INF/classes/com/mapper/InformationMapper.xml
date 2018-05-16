@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.InformationMapper">
+	<select id="insertRcap" parameterType="com.model.Rcap">
+		insert into rcap(username,time,thing)
+		values(#{0},#{1},#{2})
+	</select>
+	<select id="selectAllRcap" resultType="com.model.Rcap">
+		select * from rcap
+	</select>
+	<select id="selectOneRcap" resultType="com.model.Rcap">
+		select * from rcap where username=#{0}
+	</select>
+	<delete id="deleteRcap">
+	delete from rcap where id=#{0}
+	</delete>
+	<select id="insertEmail" parameterType="com.model.Email">
+		insert into email(fsperson,jsperson,time,context)
+		values(#{0},#{1},#{2},#{3})
+	</select>
+	<select id="selectAllEmail" resultType="com.model.Email">
+		select * from email
+	</select>
+	<select id="selectMyEmail" resultType="com.model.Email">
+		select * from email where jsperson=#{0}
+	</select>
+	<delete id="deleteEmail">
+	delete from email where id=#{0}
+	</delete>
+	<select id="insertConference" parameterType="com.model.Conference">
+		insert into conference(time,location,context)
+		values(#{0},#{1},#{2})
+	</select>
+	<select id="selectAllConference" resultType="com.model.Conference">
+		select * from conference
+	</select>
+	<delete id="deleteConference">
+	delete from conference where id=#{0}
+	</delete>
+	<select id="insertSalary" parameterType="com.model.Salary">
+		insert into salary(username,year,month,jibensalary,jixiaosalary)
+		values(#{0},#{1},#{2},#{3},#{4})
+	</select>
+	<select id="selectAllSalary" resultType="com.model.Salary">
+		select * from salary
+	</select>
+	<select id="selectOneSalary" resultType="com.model.Salary">
+		select * from salary where username=#{0}
+	</select>
+	<delete id="deleteSalary">
+	delete from salary where id=#{0}
+	</delete>
+	<select id="selectOneShengqing" resultType="com.model.Shenqing">
+		select * from shengqing where username=#{0}
+	</select>
+	<select id="insertShengqing" parameterType="com.model.Shenqing">
+		insert into shengqing(username,shengqingtype,date,context,status)
+		values(#{0},#{1},#{2},#{3},#{4})
+	</select>
+	<select id="selectOneChuqing" resultType="com.model.Chuqing">
+		select * from chuqing where username=#{0}
+	</select>
+	<select id="insertChuqing" parameterType="com.model.Chuqing">
+		insert into chuqing(username,chuqingtype,date,context,status,timeranges)
+		values(#{0},#{1},#{2},#{3},#{4},#{5})
+	</select>
+	<select id="selectAllShengqing" resultType="com.model.Shenqing">
+		select * from shengqing
+	</select>
+	<select id="selectAllChuqing" resultType="com.model.Chuqing">
+		select * from chuqing
+	</select>
+	<select id="selectShengqingById" resultType="com.model.Shenqing">
+		select * from shengqing where id=#{0}
+	</select>
+	<select id="selectChuqingById" resultType="com.model.Chuqing">
+		select * from chuqing where id=#{0}
+	</select>
+	<update id="updateShengqing">
+	update shengqing set status=#{1}
+	where id=#{0}
+	</update>
+	<update id="updateChuqing">
+	update chuqing set status=#{1}
+	where id=#{0}
+	</update>
+	<delete id="deleteChuqing">
+	delete from chuqing where id=#{0}
+	</delete>
+</mapper>

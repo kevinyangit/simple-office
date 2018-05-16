@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AdminMapper">
+    <select id="findAdminPwd" parameterType="String" resultType="String">
+       select password from admin where username=#{username }
+    </select>
+    <select id="selectAdmin"  resultType="com.model.Admin">
+       select * from admin 
+    </select>
+    <select id="insertAdmin">
+      insert into admin(username,password)
+      values(#{0},#{1})
+    </select>
+    <update id="updateAdmin">
+     update admin set username=#{1},password=#{2}
+     where id=#{0}
+    </update>
+    <delete id="deleteAdmin">
+    delete from admin where id=#{id}
+    </delete>
+</mapper>

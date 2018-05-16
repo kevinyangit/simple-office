@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+
+    <select id="insertUser" parameterType="com.model.User">
+        insert into user(username,password,gonghao,name,sex,age,email,phone,status)
+        values(#{username},#{password},#{gonghao},#{name},#{sex},#{age},#{email},#{phone},#{status})
+    </select>
+    <select id="findPwd" parameterType="String" resultType="String">
+       select password from user where username=#{0 } and status=#{1}
+    </select>
+    <select id="selectUser" resultType="com.model.User">
+       select * from user
+    </select>
+    <select id="selectOneUser" resultType="com.model.User">
+       select * from user where id=#{0}
+    </select>
+    <delete id="deleteUser">
+       delete from user where id=#{id}
+    </delete>
+     <select id="selectId" parameterType="String" resultType="Integer">
+       select id from user where username=#{username }
+    </select>
+    <select id="selectThisUser" resultType="com.model.User">
+       select * from user where id=#{id}
+    </select>
+    <update id="updateUser">
+     update user set username=#{1},gonghao=#{2},name=#{3},sex=#{4},age=#{5},email=#{6},phone=#{7}
+     where id=#{0}
+    </update>
+</mapper>
