@@ -63,7 +63,6 @@
 </script>
 </head>
 <body>
-	<p>&nbsp;</p>
 	<c:choose>
  <c:when test="${status=='员工' }">
 		<%@include file="/headerUser.jsp"%>

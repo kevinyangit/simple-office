@@ -88,8 +88,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>${item.month}</td>
                     <td>${item.jibensalary}</td>
                     <td>${item.jixiaosalary}</td>
-                    <td><a href="javascript:void(0);" onClick="alert('确认成功！')">确认</a></td>
-                </tr>
+<!--                     <td><a href="javascript:void(0);" onClick="alert('确认成功！')">确认</a></td>
+ -->                </tr>
                 </c:forEach>
             </table>
             </c:when>

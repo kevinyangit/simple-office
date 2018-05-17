@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="main">
 		<div class="left">
 			<div class="card shadow">
-				<a href="index.jsp" class="select">公司信息</a><a href="views/login/department.jsp">部门信息</a><a
+				<a href="index.jsp" >公司信息</a><a href="views/login/department.jsp" class="select">部门信息</a><a
 					href="views/login/asset.jsp">公司资产</a><a href="views/login/phone.jsp">通讯录</a>
 
 				<div class="box1 shadow" style="height:70%;">
