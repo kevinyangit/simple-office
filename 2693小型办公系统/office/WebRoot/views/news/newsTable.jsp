@@ -118,7 +118,7 @@
         <footer class="footer">
             <div class="container-fluid">
 				<div class="copyright"> 
-                    Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="javascript:">abcd</a>
+                    Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="javascript:">abcd</a>
                 </div>
             </div>
         </footer>

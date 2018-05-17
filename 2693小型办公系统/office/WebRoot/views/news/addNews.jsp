@@ -14,21 +14,15 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
+     <script src="${domain}/assets/new/jquery.min.js"></script>  
+	<script src="${domain}/js/layer.js"></script>
+    <link href="${domain}/assets/new/bootstrap.min.css" rel="stylesheet">  
+    <script src="${domain}/assets/new/bootstrap.min.js"></script>  
+  
+    <script src="${domain}/assets/new/moment-with-locales.min.js"></script>  
+    <link href="${domain}/assets/new/bootstrap-datetimepicker.min.css"  rel="stylesheet">  
+    <script src="${domain}/assets/new/bootstrap-datetimepicker.min.js"></script>  
 
-    <!-- Bootstrap core CSS     -->
-    <link href="${domain}/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="${domain}/assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="${domain}/assets/css/paper-dashboard.css" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="${domain}/assets/css/demo.css" rel="stylesheet" />
-
-    <!--  Fonts and icons     -->
-    <link href="${domain}/assets/css/themify-icons.css" rel="stylesheet">
 
 </head>
 <body>
@@ -57,19 +51,23 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">发表时间</label>
-                                                <input type="text" class="form-control border-input" placeholder="发表时间"  id="pwd">
+                                                <label for="date1">选择日期</label>  
+									            <div class="input-group date" >  
+									                <input type="text" class="form-control" id='pwd'>  
+									                <span class="input-group-addon">  
+									                    <i class="glyphicon glyphicon-calendar"></i>  
+									                </span>  
+									            </div>  
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                           <div class="form-group">
+                                               <label>内容</label>
+                                               <textarea rows="10" cols="55" id="age"></textarea>
+                                           </div>
+                                       </div>
                                     </div>
-									<div class="row">
-									    <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>内容</label>
-                                                <textarea rows="10" cols="60" id="age"></textarea>
-                                            </div>
-                                        </div>
-									</div>
+					
 
                                    
                                     <div class="text-center">
@@ -87,30 +85,11 @@
 
 
 </body>
-
-    <!--   Core JS Files   -->
-    <script src="${domain}/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="${domain}/assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="${domain}/assets/js/bootstrap-checkbox-radio.js"></script>
-
-	<!--  Charts Plugin -->
-	<script src="${domain}/assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="${domain}/assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
-
-    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="${domain}/assets/js/paper-dashboard.js"></script>
-
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="${domain}/assets/js/demo.js"></script>
-	<script src="${domain}/js/layer.js"></script>
 	<script type="text/javascript">
+    $('#pwd').datetimepicker({    
+        format: 'YYYY-MM-DD HH:mm:ss',    
+        locale: moment.locale('zh-cn')    
+    });   
 	function update(){
 			var newsname = document.getElementById("account").value;
 			var author= document.getElementById("name").value;
@@ -132,6 +111,7 @@
 				}
 				if(result == "true"){
 					layer.msg('添加成功!',{icon: 1,time:2000});
+					setTimeout("var index = parent.layer.getFrameIndex(window.name); parent.layer.close(index);",2000);
 				}
 			})
 	}

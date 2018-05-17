@@ -30,7 +30,7 @@ public class AdminController {
 	private UserService userService;
 
 
-	// ÇóÖ°ÕßµÇÂ¼
+	// ï¿½ï¿½Ö°ï¿½ßµï¿½Â¼
 	@RequestMapping(value = "/adminLogin.do")
 	@ResponseBody
 	public int adminLogin(@RequestParam String username, String password,
@@ -44,7 +44,7 @@ public class AdminController {
 			return 0;
 	}
 
-	// ¹ÜÀíÔ±ÁÐ±í
+	// ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ð±ï¿½
 	@RequestMapping("/adminTable.do")
 	public String adminTable(HttpSession session) {
 		List<Admin> findadminList = adminService.selectAdmin();
@@ -52,7 +52,7 @@ public class AdminController {
 		return "views/admin/adminTable";
 	}
 
-	// Ìí¼Ó¹ÜÀíÔ±ÐÅÏ¢
+	// ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	@ResponseBody
 	@RequestMapping("/addAdminInfo")
 	public String addCourseInfo(String username, String password) {
@@ -60,7 +60,7 @@ public class AdminController {
 		return "true";
 	}
 
-	// Ê¹ÒªÐÞ¸ÄµÄÐÅÏ¢ÔÚÒ³ÃæÏÔÊ¾
+	// Ê¹Òªï¿½Þ¸Äµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ê¾
 	@RequestMapping("/upAdmin")
 	public String upAdmin(Integer id, String username, String password,
 			HttpSession session) throws IOException {
@@ -74,7 +74,7 @@ public class AdminController {
 		return "views/admin/upAdmin";
 	}
 
-	// ¸üÐÂ¹ÜÀíÔ±ÐÅÏ¢
+	// ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	@ResponseBody
 	@RequestMapping(value = "/upAdminInfo")
 	public String upAdminInfo(@RequestParam Integer id, String username,
@@ -90,7 +90,7 @@ public class AdminController {
 		return "true";
 	}
 
-	// ²åÈëÑ§ÉúÐÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢
 	@ResponseBody
 	@RequestMapping(value = "/insertUser")
 	public String insertUser(@RequestParam String username, String password,String gonghao,
@@ -114,5 +114,11 @@ public class AdminController {
 		List<User> findadminList = userService.selectOneUser(id);
 		session.setAttribute("finduserList", findadminList);
 		return "views/admin/upUser";
+	}
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("adminname");
+		session = null;
+		return "views/admin/adminLogin";
 	}
 }

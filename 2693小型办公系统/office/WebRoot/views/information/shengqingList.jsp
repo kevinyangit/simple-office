@@ -68,7 +68,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <a href="shengqingList.do">申请记录</a>
 	    <div class="box1 shadow" style="height:70%">
         	<div class="tit">
-            	<h3>所有申请</h3>
+        	所有申请记录
+<!--         		<label>申请状态</label>
+            	<select>
+				  <option value ="all">所有</option>
+				  <option value ="同意">同意</option>
+				  <option value="不同意">不同意</option>
+				  <option value="正在申请">不同意</option>
+				</select> -->
         	</div> 
         	<c:choose>
         	<c:when test="${shegnqingList!=null && fn:length(shegnqingList) > 0  }">  
@@ -77,6 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>编号</td>
                     <td>申请类别</td>
                     <td>申请时间</td>
+                    <td>状态</td>
                     <td>操作</td>
                 </tr>
                 <c:forEach items="${requestScope.shegnqingList }" var="item" varStatus="status"> 
@@ -84,6 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>${status.count}</td>
                     <td>${item.shengqingtype }</td>
                     <td>${item.date }</td>
+                    <td>${item.status }</td>
                     <td><a href="shengqingInfo.do?id=${item.id }">查看</a></td>
                 </tr>
                 </c:forEach>

@@ -49,6 +49,12 @@
                         <p>新闻管理管理</p>
                     </a>
                 </li>
+                <li>
+                    <a href="${domain }/logout.do">
+                        <i class="ti-text"></i>
+                        <p>注销</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>

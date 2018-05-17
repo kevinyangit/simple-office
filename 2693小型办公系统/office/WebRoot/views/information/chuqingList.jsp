@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="main">
     <div class="left">
      <div class="card shadow">
-     <a href="shengqingList.do">申请记录</a>
+     <a href="chuqingList.do">申请记录</a>
 	    <div class="box1 shadow" style="height:70%">
         	<div class="tit">
             	<h3>所有申请</h3>
@@ -76,6 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <tr>
                     <td>编号</td>
                     <td>申请类别</td>
+                    <td>状态</td>
                     <td>申请时间范围</td>
                     <td>操作</td>
                 </tr>
@@ -83,6 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <tr>
                     <td>${status.count}</td>
                     <td>${item.chuqingtype }</td>
+                    <td>${item.status }</td>
                     <td>${item.timeranges }</td>
                     <td><a href="chuqingInfo.do?id=${item.id }">查看</a></td>
                 </tr>

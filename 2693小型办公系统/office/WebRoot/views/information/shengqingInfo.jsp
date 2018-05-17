@@ -40,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			},function(result){
 				if(result == "true"){
 					alert("审批成功！");
+					window.location.href="shengqingList.do";
 				}
 			})
 	}
@@ -50,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			},function(result){
 				if(result == "true"){
 					alert("审批成功！");
+					window.location.href="shengqingList.do";
 				}
 			})
 	}
