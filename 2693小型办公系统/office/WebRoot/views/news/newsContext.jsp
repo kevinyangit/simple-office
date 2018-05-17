@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-<div class="foot">Copyright © 2012 itmag.com All rights reserved. | 苏ICP备12067872号 </div>
+<div class="foot">Copyright © 2018  All rights reserved. </div>
 </body>
 </html>
 
