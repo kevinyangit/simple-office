@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="main">
     <div class="left">
     <div class="card shadow">
-				<a href="rcapList.do" class="select">日程安排</a><a href="emailList.do">邮件信息</a><a
+				<a href="rcapList.do" >日程安排</a><a href="emailList.do?username=${sessionScope.username}" class="select">邮件信息</a><a
 					href="conferenceList.do">会议信息</a>
 	    <div class="box1 shadow" style="height:70%;">
         	<div class="tit">

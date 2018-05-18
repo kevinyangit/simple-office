@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="main">
     <div class="left">
      <div class="card shadow">
-     <a href="views/information/chuqing.jsp" class="select">添加申请</a><a href="mychuqingList.do">申请记录</a>
+     <a href="views/information/chuqing.jsp" >添加申请</a><a href="mychuqingList.do" class="select">申请记录</a>
 	    <div class="box1 shadow" style="height:70%">
         	<div class="tit">
             	<h3>您的申请列表</h3>

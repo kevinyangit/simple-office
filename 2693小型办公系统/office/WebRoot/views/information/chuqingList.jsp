@@ -76,6 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <tr>
                     <td>编号</td>
                     <td>申请类别</td>
+                    <td>用户</td>
                     <td>状态</td>
                     <td>申请时间范围</td>
                     <td>操作</td>
@@ -84,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <tr>
                     <td>${status.count}</td>
                     <td>${item.chuqingtype }</td>
+                    <td>${item.username }</td>
                     <td>${item.status }</td>
                     <td>${item.timeranges }</td>
                     <td><a href="chuqingInfo.do?id=${item.id }">查看</a></td>

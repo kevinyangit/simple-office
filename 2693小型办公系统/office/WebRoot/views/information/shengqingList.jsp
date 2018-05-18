@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table class="TB2">
                 <tr>
                     <td>编号</td>
+                    <td>用户</td>
                     <td>申请类别</td>
                     <td>申请时间</td>
                     <td>状态</td>
@@ -90,6 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <c:forEach items="${requestScope.shegnqingList }" var="item" varStatus="status"> 
                 <tr>
                     <td>${status.count}</td>
+                    <td>${item.username }</td>
                     <td>${item.shengqingtype }</td>
                     <td>${item.date }</td>
                     <td>${item.status }</td>

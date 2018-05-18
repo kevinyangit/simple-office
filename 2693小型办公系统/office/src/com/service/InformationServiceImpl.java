@@ -171,8 +171,8 @@ public class InformationServiceImpl implements InformationService{
 	}
 
 	@Override
-	public List<Email> selectMyEmail(String jsperson) {
 		// TODO Auto-generated method stub
+	public List<Email> selectMyEmail(String jsperson) {
 		return informationMapper.selectMyEmail(jsperson);
 	}
 
@@ -181,5 +181,6 @@ public class InformationServiceImpl implements InformationService{
 		// TODO Auto-generated method stub
 		informationMapper.deleteChuqing(id);
 	}
+
 	
 }
