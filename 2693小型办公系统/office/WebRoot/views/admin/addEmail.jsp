@@ -37,12 +37,12 @@
         <div class="content"><div style="padding-left: 20px;padding-right: 20px">
              <form>
                                    <div class="row">
-                                        <div class="col-md-6">
+          <!--                               <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>发送人</label>
-                                                <input type="text" class="form-control border-input" placeholder="发送人"  id="fsperson">
+                                                <input type="text" class="form-control border-input" placeholder="发送人"  id="fsperson" >
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>接收人</label>
@@ -65,8 +65,9 @@
                                          <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>邮件内容</label>
-                                                <input type="text" class="form-control border-input" placeholder="邮件内容"  id="thing">
-                                            </div>
+                                                <textarea rows="5" cols="55" class="form-control border-input" placeholder="邮件内容"  id="thing"></textarea>
+<!--                                                 <input type="text" class="form-control border-input" placeholder="邮件内容"  id="thing">
+ -->                                            </div>
                                         </div>
                                     </div>
                                     
@@ -95,7 +96,8 @@
         locale: moment.locale('zh-cn')    
     });    
 	function update(){
-	        var fsperson = document.getElementById("fsperson").value;
+	        //var fsperson = document.getElementById("fsperson").value;
+	        var fsperson = "公司";
 			var jsperson = document.getElementById("jsperson").value;
 			var time = document.getElementById("time").value;
 			var thing = document.getElementById("thing").value;

@@ -56,7 +56,8 @@
                                          <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>会议主题</label>
-                                                <input type="text" class="form-control border-input" placeholder="会议主题"  id="context">
+                                                <textarea rows="5" cols="55" class="form-control border-input" placeholder="会议主题"  id="context"></textarea>
+                                                <!-- <input type="text" class="form-control border-input" placeholder="会议主题"  id="context"> -->
                                             </div>
                                         </div>
                                     </div>

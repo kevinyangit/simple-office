@@ -60,7 +60,8 @@
                                          <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>事由</label>
-                                                <input type="text" class="form-control border-input" placeholder="事由"  id="thing">
+                                                 <textarea rows="5" cols="55" class="form-control border-input" placeholder="事由"  id="thing"></textarea>
+                                                <!-- <input type="text" class="form-control border-input" placeholder="事由"  id="thing"> -->
                                             </div>
                                         </div>
                                     </div>
