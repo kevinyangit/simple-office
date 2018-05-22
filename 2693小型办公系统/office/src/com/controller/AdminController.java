@@ -121,4 +121,9 @@ public class AdminController {
 		session = null;
 		return "views/admin/adminLogin";
 	}
+
+	@RequestMapping("/statis.do")
+	public String statis(HttpSession session) {
+		return "views/admin/statis";
+	}
 }

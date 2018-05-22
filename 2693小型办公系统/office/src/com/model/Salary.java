@@ -7,6 +7,8 @@ public class Salary {
 	String month;
 	String jibensalary;
 	String jixiaosalary;
+	String totalSalary;
+
 	public int getId() {
 		return id;
 	}
@@ -43,5 +45,7 @@ public class Salary {
 	public void setJixiaosalary(String jixiaosalary) {
 		this.jixiaosalary = jixiaosalary;
 	}
-    
+	public Integer getTotalSalary() {
+		return Integer.parseInt(jixiaosalary) + Integer.parseInt(jibensalary);
+	}
 }

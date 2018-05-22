@@ -186,7 +186,7 @@ public class InformationController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = df.format(day);
 		InformationService.insertShengqing(username, shengqingtype, date,
-				context, "������");
+				context, "申请");
 		return "true";
 	}
 
@@ -243,7 +243,7 @@ public class InformationController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = df.format(day);
 		InformationService.insertChuqing(username, chuqingtype, date, context,
-				"������",timeranges);
+				"申请",timeranges);
 		return "true";
 	}
 

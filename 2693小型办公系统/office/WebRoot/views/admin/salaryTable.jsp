@@ -84,6 +84,7 @@
                                     	<th>月份</th>
                                     	<th>基本工资</th>
                                     	<th>绩效工资</th>
+                                    	<th>总工资</th>
                                     	<th>操作</th>
                                     </thead>
                                     <tbody>
@@ -95,6 +96,7 @@
                                         	<td>${list.month}</td>
                                         	<td>${list.jibensalary}</td>
                                         	<td>${list.jixiaosalary}</td>
+                                        	<td>${list.totalSalary} </td>
                                         	<td>
                                         	
                                         	<%-- <button class="btn btn-primary btn-fill " onclick="update(${list.id})">编辑</button> --%>
