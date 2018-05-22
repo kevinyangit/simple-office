@@ -51,13 +51,13 @@
                 </li>
                 <li>
                     <a href="${domain}/statis.do">
-                        <i class="ti-text"></i>
+                        <i class="ti-bar-chart"></i>
                         <p>数据统计</p>
                     </a>
                 </li>
                 <li>
                     <a href="${domain }/logout.do">
-                        <i class="ti-text"></i>
+                        <i class="ti-truck"></i>
                         <p>注销</p>
                     </a>
                 </li>
