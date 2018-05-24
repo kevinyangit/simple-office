@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </td>
                 </tr>
                 <tr>
-                    <th>时间范围：</th>
+                    <th>请假天数：</th>
                     <td><input type="text" id="timeranges"></td>
                 </tr>
                 <tr>
@@ -97,6 +97,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	</div>
 </div>
+<script type="text/javascript">
+
+//判断输入的一个数是不是正整数  
+$("#timeranges").keyup(function(){  
+    var value = jQuery(this).val();  
+    if((/^(\+|-)?\d+$/.test( value ))&&value>0){  
+        return true;  
+    }else{  
+        alert("数量中请输入正整数！");  
+        $("#timeranges").val("0");  
+        return false;  
+    }  
+});
+
+</script>
 <div class="foot">Copyright © 2018  All rights reserved. </div>
 </body>
 </html>
