@@ -143,8 +143,16 @@
 	            title: {
 	                text: '每年最低工资的员工'
 	            },
+	          //用formatter回调函数显示单项数据内容
 	            tooltip: {
-	            },
+	                          trigger: 'item', 
+	                          formatter: function(dataParam) 
+	                          {
+	                        	  var index = dataParam.dataIndex;
+	                        	  var person = data[index];
+	                              return dataParam.name + '<br/>' + '员工 : ' +person.userName + '<br/>' + dataParam.seriesName + '：'+dataParam.value;
+	                           }
+	                      },
 	            legend: {
 	                data:['总工资']
 	            },
@@ -179,7 +187,15 @@
 	            title: {
 	                text: '每年最高工资的员工'
 	            },
-	            tooltip: {},
+	            tooltip: {
+                    trigger: 'item', 
+                    formatter: function(dataParam) 
+                    {
+                  	  var index = dataParam.dataIndex;
+                  	  var person = data[index];
+                        return dataParam.name + '<br/>' + '员工 : ' +person.userName + '<br/>' + dataParam.seriesName + '：'+dataParam.value;
+                     }
+                },
 	            legend: {
 	                data:['总工资']
 	            },
