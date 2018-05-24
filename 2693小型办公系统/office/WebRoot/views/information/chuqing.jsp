@@ -85,11 +85,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
                 <tr>
                     <th>开始时间：</th>
-                    <td><input type="text" id="startDate"></td>
+                    <td><input type="text" id="startDate" placeholder="请输入如2017-01-01"></td>
                 </tr>
                 <tr>
                     <th>结束时间：</th>
-                    <td><input type="text" id="endDate"></td>
+                    <td><input type="text" id="endDate" placeholder="请输入如2017-01-02"></td>
                 </tr>
                 <tr>
                     <th>请假天数：</th>

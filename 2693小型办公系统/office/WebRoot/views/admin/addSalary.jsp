@@ -140,7 +140,7 @@
 											请假天数
 										</label>
 										<input type="text" class="form-control border-input"
-											placeholder="请假天数" id="qingJiaDate">
+											placeholder="请假天数, 鼠标离开后会自动获取" id="qingJiaDate">
 									</div>
 								</div>
 								<div class="col-md-5">
@@ -158,7 +158,7 @@
 											合计
 										</label>
 										<input type="text" class="form-control border-input"
-											placeholder="合计" id="total">
+											placeholder="合计,鼠标离开后会自动获取" id="total">
 									</div>
 								</div>
 							</div>
@@ -236,6 +236,9 @@
 			var qingJiaDate = document.getElementById("qingJiaDate").value;
 			var kouQian = document.getElementById("kouQian").value;
 			var total = document.getElementById("total").value;
+			if(total = null || total ==''){
+				layer.msg('工资合计不能为空!',{icon: 2,time:2000});
+			}
 			$.post("${domain}/insertSalary.do",{
 				'username' : username,
 				'year' : year,
@@ -258,9 +261,12 @@
 	}
 	
 	//初始化请假天数
-	$(".form-group #month").change(function(){
+	$(".form-group #qingJiaDate").blur(initQingJiaDate);
+	//$(".form-group #month").change(initQingJiaDate);
+	
+	function initQingJiaDate() {
 		var year = $('#year').val();
-		var month = $(this).children('option:selected').val();
+		var month =$('#month').val();
 		var username = document.getElementById("account").value;
 
 		var monthStr = year + "-" + month;
@@ -278,26 +284,19 @@
 				console.log('system error');
 			}
 		})
-	  });
-	
+	  }
 	//初始化合计
-	$('#kouQian').blur(function(){
-		var jibensalary = document.getElementById("jibensalary").value;
-		var jixiaosalary = document.getElementById("jixiaosalary").value;
-		var qingJiaDate = $('#qingJiaDate').val();
-		var kouQian = $('#kouQian').val();
-		var total = (parseInt(jibensalary) + parseInt(jixiaosalary)) - (qingJiaDate * kouQian );
-		$('#total').val(total);
-	});
-	$('#total').blur(function(){
-		var jibensalary = document.getElementById("jibensalary").value;
-		var jixiaosalary = document.getElementById("jixiaosalary").value;
-		var qingJiaDate = $('#qingJiaDate').val();
-		var kouQian = $('#kouQian').val();
-		var total = (parseInt(jibensalary) + parseInt(jixiaosalary)) - (qingJiaDate * kouQian );
-		$('#total').val(total);
-	});
+	//$('#kouQian').blur(initTotal);
+	$('#total').blur(initTotal);
 	
+	function initTotal(){
+		var jibensalary = document.getElementById("jibensalary").value;
+		var jixiaosalary = document.getElementById("jixiaosalary").value;
+		var qingJiaDate = $('#qingJiaDate').val();
+		var kouQian = $('#kouQian').val();
+		var total = (parseInt(jibensalary) + parseInt(jixiaosalary)) - (qingJiaDate * kouQian );
+		$('#total').val(total);
+	}
 	
 	</script>
 </html>
