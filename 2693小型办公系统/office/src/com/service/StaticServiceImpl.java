@@ -1,11 +1,4 @@
-/**  
- * Project Name:Recruitment  
- * File Name:StaticServiceImpl.java  
- * Package Name:com.service  
- * Date:2018年5月21日上午11:01:11  
- * Copyright (c) 2018
- *  
-*/  
+
   
 package com.service;
 
@@ -18,14 +11,7 @@ import com.dto.output.SalaryEveryYeary;
 import com.dto.output.StaticSalary;
 import com.mapper.StaticMapper;
 
-/**  
- * ClassName:StaticServiceImpl <br/>  
- * Date:     2018年5月21日 上午11:01:11 <br/>  
- * @author   YangGuangFeng  
- * @version    
- * @since    JDK 1.8  
- * @see        
- */
+
 @Service
 public class StaticServiceImpl implements StaticService{
 

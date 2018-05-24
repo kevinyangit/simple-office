@@ -73,12 +73,13 @@
                         <div class="card">
                             <div class="header">
                                 <p class="category">请选择你要进行的操作</p>
-                                <h4 class="title"><button class="btn btn-info btn-fill " onclick="add()">增加</button></h4>
+                                <h4 class="title" ><button  style="float: left;" class="btn btn-info btn-fill " onclick="add()">增加</button></h4>
+                                <h4 class="title"   style="margin-left: 750px ;" > <input  class="btn btn-info btn-fill "  type="text" placeholder="用户名"  style="float: left; background-color: white; width: 150px"> </input>  <button  style="float: left;"  class="btn btn-info btn-fill " onclick="selectSalary()">搜索</button></h4>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>编号</th>
+                                        <!--th>编号</th-->
                                     	<th>用户名</th>
                                     	<th>年份</th>
                                     	<th>月份</th>
@@ -90,7 +91,7 @@
                                     <tbody>
                                     <c:forEach var="list" items="${findSalaryList}" varStatus="status">
                                         <tr>
-                                        	<td>${status.count}</td>
+                                        	<!--  td>${status.count}</td-->
                                         	<td>${list.username}</td>
                                         	<td>${list.year}</td>
                                         	<td>${list.month}</td>

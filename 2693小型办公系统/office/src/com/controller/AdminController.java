@@ -30,7 +30,7 @@ public class AdminController {
 	private UserService userService;
 
 
-	// ï¿½ï¿½Ö°ï¿½ßµï¿½Â¼
+	
 	@RequestMapping(value = "/adminLogin.do")
 	@ResponseBody
 	public int adminLogin(@RequestParam String username, String password,
@@ -44,7 +44,7 @@ public class AdminController {
 			return 0;
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ð±ï¿½
+
 	@RequestMapping("/adminTable.do")
 	public String adminTable(HttpSession session) {
 		List<Admin> findadminList = adminService.selectAdmin();
@@ -52,7 +52,7 @@ public class AdminController {
 		return "views/admin/adminTable";
 	}
 
-	// ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
+
 	@ResponseBody
 	@RequestMapping("/addAdminInfo")
 	public String addCourseInfo(String username, String password) {
@@ -60,7 +60,7 @@ public class AdminController {
 		return "true";
 	}
 
-	// Ê¹Òªï¿½Þ¸Äµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ê¾
+
 	@RequestMapping("/upAdmin")
 	public String upAdmin(Integer id, String username, String password,
 			HttpSession session) throws IOException {
@@ -74,7 +74,7 @@ public class AdminController {
 		return "views/admin/upAdmin";
 	}
 
-	// ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
+	
 	@ResponseBody
 	@RequestMapping(value = "/upAdminInfo")
 	public String upAdminInfo(@RequestParam Integer id, String username,
@@ -90,7 +90,7 @@ public class AdminController {
 		return "true";
 	}
 
-	// ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½Ï¢
+
 	@ResponseBody
 	@RequestMapping(value = "/insertUser")
 	public String insertUser(@RequestParam String username, String password,String gonghao,
@@ -105,8 +105,29 @@ public class AdminController {
 		user.setGonghao(gonghao);
         user.setName(name);
         user.setStatus(status);
-		userService.insertUser(user);
-		return "true";
+        
+		Integer userID = userService.selectId(username);
+		String repeatWorkerNo = userService.selectUSERId(gonghao);
+		if (null != userID) {
+			/*
+			 * ×¢²áÊ§°Ü£¬êÇ³ÆÖØ¸´
+			 */
+			return "false";
+		} else if (repeatWorkerNo != null) {
+			/*
+			 * ×¢²áÊ§°Ü£¬¹¤ºÅÖØ¸´
+			 */
+		    return "false";
+		} else {
+			
+			userService.insertUser(user);
+			/*
+			 * ×¢²á³É¹¦£¬Ç°ÍùµÇÂ¼Ò³½øÐÐµÇÂ¼
+			 */
+			return "true";
+		}
+
+		
 	}
 
 	@RequestMapping("/upUser.do")

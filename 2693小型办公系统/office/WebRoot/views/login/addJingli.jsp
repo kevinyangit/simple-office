@@ -2,11 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<c:set var="domain" value="${pageContext.request.contextPath}"></c:set>
-<title>注册页面</title>
-<style>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<c:set var="domain" value="${pageContext.request.contextPath}"></c:set>
+		<title>注册页面</title>
+		<style>
 html,body {
 	height: 100%;
 }
@@ -77,7 +77,7 @@ h1 {
 	color: #666;
 	margin: 0 0 30px 0;
 	letter-spacing: 4px;
-	font: normal 26px/1 Verdana, Helvetica;
+	font: normal 26px/ 1 Verdana, Helvetica;
 	position: relative;
 }
 
@@ -122,7 +122,7 @@ fieldset {
 	background: #f1f1f1 url(../images/login-sprite.png) no-repeat;
 	padding: 15px 15px 15px 30px;
 	margin: 0 0 10px 0;
-	width: 353px; /* 353 + 2 + 45 = 400 */
+	width: 340px; /* 353 + 2 + 45 = 400 */
 	border: 1px solid #ccc;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -133,17 +133,17 @@ fieldset {
 }
 
 select {
-	width: 100%;
-	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
+	background: #f1f1f1 url(../images/login-sprite.png) no-repeat;
+	padding: 15px 15px 15px 30px;
+	margin: 0 0 10px 0;
 	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-left: 70px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 387px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+	box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff margin-left :     auto;
 }
 
 #username {
@@ -164,7 +164,7 @@ select {
 }
 
 #actions {
-	margin: 15px 0 0px 34%;
+	margin: 15px 0 0px 15%;
 }
 
 #submit {
@@ -196,6 +196,7 @@ select {
 	cursor: pointer;
 	font: bold 15px Arial, Helvetica;
 	color: #8f5a0a;
+	margin-right: 20px;
 }
 
 #submit:hover,#submit:focus {
@@ -226,6 +227,7 @@ select {
 	line-height: 35px;
 	margin-left: 10px;
 }
+
 /*--------------------*/
 #back {
 	display: block;
@@ -235,64 +237,103 @@ select {
 	color: #999;
 }
 </style>
-<script type="text/javascript" src="${domain}/js/jquery.min.js"></script>
-<script type="text/javascript">
+		<script type="text/javascript" src="${domain}/js/jquery.min.js"></script>
+		<script type="text/javascript">
+		function jump(){
+		window.location.href="http://localhost:8080/Recruitment/views/login/login.jsp";
+		}
 function submitFunction() {
 var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
 var phone=$("#phone").val();
  var email=$("#email").val();
- if (!myreg.test(phone)) {
+ var gonghao=$("#gonghao").val();
+ 	var gonghaoreg = /^[0-9a-zA-Z]+$/;
+ 	var agereg=/^[1-9]\d*$|^0$/; 
+ 	var age =$("#age").val(); 
+ 	if(age){
+ 		if(!agereg.test(age)){
+		alert("你输入的年龄不是数字");
+		return false;
+	}
+ 	}
+ 
+ 	if(!gonghaoreg.test(gonghao)){
+		alert("你输入的工号不是数字或者字母");
+		return false;
+}
+
+ if(phone){
+  if (!myreg.test(phone)) {
 				alert("手机号格式错误！");
 				return false;
  } 
-  if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/))
+ }
+ if(email){
+   if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/))
   {
    alert("邮箱格式不正确！请重新输入");
    $("#email1").focus();
    return false;
   }
+ }
+
  
 }
 </script>
 
-</head>
-<body>
-	<form id="login" onsubmit="return submitFunction()"
-		action="${domain}/jingliRegister.do" method="post">
+	</head>
+	<body>
+		<form id="login" onsubmit="return submitFunction()"
+			action="${domain}/jingliRegister.do" method="post">
 
-		<h1>Register</h1>
+			<h1>
+				Register
+			</h1>
 
-		<fieldset id="inputs">
+			<fieldset id="inputs">
 
-			<input id="account" name="account" type="text" placeholder="用户名">
+				<input id="account" name="account" type="text" placeholder="用户名">
+				<span style="color: red; width: ">*</span>
 
-			<input id="pwd" name="pwd" type="password" placeholder="密码">
-			<input id="gonghao" name="gonghao" type="text" placeholder="工号">
+				<input id="pwd" name="pwd" type="password" placeholder="密码">
+				<span style="color: red; width: ">*</span>
+				<input id="gonghao" name="gonghao" type="text" placeholder="工号(数字或者字母)">
+				<span style="color: red; width: ">*</span>
 
-			<input id="name" name="name" type="text" placeholder="姓名"> <input
-				id="sex" name="sex" type="text" placeholder="性别"> <input
-				id="age" name="age" type="text" placeholder="年龄"> <input
-				id="email" name="email" type="text" placeholder="邮箱"> <input
-				id="phone" name="phone" type="text" placeholder="电话">
+				<input id="name" name="name" type="text" placeholder="姓名">
+				<span style="color: red; width: ">*</span>
 
-		</fieldset>
+				<select name="sex" id="sex">
+					
+					<option value="男">
+						男
+					</option>
+					<option value="女">
+						女
+					</option>
+				</select>
+				<input id="age" name="age" type="text" placeholder="年龄">
+				<input id="email" name="email" type="text" placeholder="邮箱">
+				<input id="phone" name="phone" type="text" placeholder="电话">
 
-		<fieldset id="actions">
+			</fieldset>
 
-			<input type="submit" id="submit" value="注册">
+			<fieldset id="actions">
 
+				<input type="submit" id="submit" value="注册">
+				<input type="button" id="submit" value="返回" onclick="jump();">
 
-		</fieldset>
+			</fieldset>
 
-	</form>
-	<div style="clear:both"></div>
-	<br>
-	<br>
-	<div style="text-align:center">
-
+		</form>
+		<div style="clear: both"></div>
 		<br>
 		<br>
+		<div style="text-align: center">
 
-	</div>
-</body>
+			<br>
+			<br>
+
+		</div>
+	</body>
 </html>

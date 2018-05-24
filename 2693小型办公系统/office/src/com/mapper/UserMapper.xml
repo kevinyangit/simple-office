@@ -7,6 +7,16 @@
         insert into user(username,password,gonghao,name,sex,age,email,phone,status)
         values(#{username},#{password},#{gonghao},#{name},#{sex},#{age},#{email},#{phone},#{status})
     </select>
+    
+
+     <select id="finduserName" parameterType="String" resultType="com.model.User">
+       select * from user where username=#{0 }
+    </select>
+ <select id="selectUSERId" parameterType="String" resultType="String">
+       select username from user where gonghao=#{0 }
+    </select>
+
+
     <select id="findPwd" parameterType="String" resultType="String">
        select password from user where username=#{0 } and status=#{1}
     </select>
@@ -26,7 +36,7 @@
        select * from user where id=#{id}
     </select>
     <update id="updateUser">
-     update user set username=#{1},gonghao=#{2},name=#{3},sex=#{4},age=#{5},email=#{6},phone=#{7}
-     where id=#{0}
+     update user set password=#{password}, gonghao=#{gonghao},name=#{name},sex=#{sex},age=#{age},email=#{email},phone=#{phone}
+     where id= #{id}
     </update>
 </mapper>

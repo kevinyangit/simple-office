@@ -31,7 +31,7 @@ public class InformationController {
 	@Autowired
 	private UserService userService;
 
-	// �г��б�
+
 	@RequestMapping("/rcapTable.do")
 	public String recpTable(HttpSession session) {
 		List<Rcap> resume = InformationService.selectAllRcap();
@@ -39,16 +39,26 @@ public class InformationController {
 		return "views/admin/rcapTable";
 	}
 
-	// �����ճ̰���
+	
 	@RequestMapping(value = "/insertRcap.do")
 	@ResponseBody
 	public String insertRcap(@RequestParam String username, String time,
 			String thing) throws IOException {
-		InformationService.insertRcap(username, time, thing);
-		return "true";
+		
+		  if(userService.selectId(username) == null){
+				/*
+				 * ����ʧ�ܣ�û�и��û�
+				 */
+				return "false"; 
+			  
+		  }else{
+				InformationService.insertRcap(username, time, thing);
+				return "true";
+		  }
+	
 	}
 
-	// ���Ҹ����ճ̰��ţ�����Uid
+	
 	@RequestMapping(value = "/rcapList.do")
 	public ModelAndView rcapList(HttpSession session) throws IOException {
 		String username = (String) session.getAttribute("username");
@@ -59,7 +69,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// ɾ���ճ̰���
+	
 	@ResponseBody
 	@RequestMapping("/deleteRcap")
 	public String deleteRcap(Integer id) {
@@ -67,7 +77,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// �ʼ��б�
+
 	@RequestMapping("/emailTable.do")
 	public String emailTable(HttpSession session) {
 		List<Email> resume = InformationService.selectAllEmail();
@@ -75,7 +85,7 @@ public class InformationController {
 		return "views/admin/emailTable";
 	}
 
-	// �����ʼ�
+
 	@RequestMapping(value = "/emailList.do")
 	public ModelAndView emailList(HttpSession session, @RequestParam("username")String username) throws IOException {
 //		List<Email> resume = InformationService.selectAllEmail();
@@ -86,16 +96,28 @@ public class InformationController {
 		return mv;
 	}
 
-	// �����ʼ�
+
 	@RequestMapping(value = "/insertEmail.do")
 	@ResponseBody
 	public String insertEmail(@RequestParam String fsperson,String jsperson,String time, String context)
 			throws IOException {
-		InformationService.insertEmail(fsperson,jsperson,time, context);
-		return "true";
+		
+		
+		  if(userService.selectId(jsperson)<0){
+				/*
+				 * ����ʧ�ܣ�û�и��û�
+				 */
+				return "false"; 
+		  }else{
+				InformationService.insertEmail(fsperson,jsperson,time, context);
+				return "true";
+		  }
+	
+		
+	
 	}
 
-	// ɾ���ʼ�
+
 	@ResponseBody
 	@RequestMapping("/deleteEmail")
 	public String deleteEmail(Integer id) {
@@ -103,7 +125,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ��̨�����б�
+
 	@RequestMapping("/conferenceTable.do")
 	public String conferenceTable(HttpSession session) {
 		List<Conference> resume = InformationService.selectAllConference();
@@ -111,7 +133,7 @@ public class InformationController {
 		return "views/admin/conferenceTable";
 	}
 
-	// ���һ���
+
 	@RequestMapping(value = "/conferenceList.do")
 	public ModelAndView conferenceList(HttpSession session) throws IOException {
 		List<Conference> resume = InformationService.selectAllConference();
@@ -121,7 +143,6 @@ public class InformationController {
 		return mv;
 	}
 
-	// �����ʼ�
 	@RequestMapping(value = "/insertConference.do")
 	@ResponseBody
 	public String insertConference(@RequestParam String time, String location,
@@ -130,7 +151,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ɾ���ʼ�
+	
 	@ResponseBody
 	@RequestMapping("/deleteConference")
 	public String deleteConference(Integer id) {
@@ -138,7 +159,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ��̨нˮ�б�
+
 	@RequestMapping("/salaryTable.do")
 	public String salaryTable(HttpSession session) {
 		List<Salary> resume = InformationService.selectAllSalary();
@@ -146,7 +167,7 @@ public class InformationController {
 		return "views/admin/salaryTable";
 	}
 
-	// ����нˮ
+	
 	@RequestMapping(value = "/insertSalary.do")
 	@ResponseBody
 	public String insertSalary(@RequestParam String username, String year,
@@ -157,7 +178,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ɾ��нˮ
+
 	@ResponseBody
 	@RequestMapping("/deleteSalary")
 	public String deleteSalary(Integer id) {
@@ -165,7 +186,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ���һ���
+
 	@RequestMapping(value = "/salaryList.do")
 	public ModelAndView salaryList(HttpSession session) throws IOException {
 		String username = (String) session.getAttribute("username");
@@ -176,7 +197,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// ��������
+	
 	@RequestMapping(value = "/insertShengqing.do")
 	@ResponseBody
 	public String insertShengqing(@RequestParam String shengqingtype,
@@ -190,7 +211,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// �鿴�ҵ�������Ϣ
+
 	@RequestMapping(value = "/myshengqingList.do")
 	public ModelAndView myshenqingList(HttpSession session) throws IOException {
 		String username = (String) session.getAttribute("username");
@@ -201,7 +222,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// �鿴������Ϣ
+	
 	@RequestMapping(value = "/shengqingList.do")
 	public ModelAndView shenqingList(HttpSession session) throws IOException {
 		List<Shenqing> resume = InformationService.selectAllShengqing();
@@ -211,7 +232,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// �鿴ĳһ��������Ϣ
+	
 	@RequestMapping(value = "/shengqingInfo.do")
 	public ModelAndView shengqingInfo(HttpServletRequest request,
 			HttpSession session) throws IOException {
@@ -224,7 +245,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// ��������
+
 	@RequestMapping(value = "/updateShengqing.do")
 	@ResponseBody
 	public String updateShengqing(@RequestParam int id, String status,
@@ -233,7 +254,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// ��������
+	
 	@RequestMapping(value = "/insertChuqing.do")
 	@ResponseBody
 	public String Chuqing(@RequestParam String chuqingtype, String context,String timeranges,
@@ -247,7 +268,7 @@ public class InformationController {
 		return "true";
 	}
 
-	// �鿴�ҵ�������Ϣ
+	
 	@RequestMapping(value = "/mychuqingList.do")
 	public ModelAndView mychuqingList(HttpSession session) throws IOException {
 		String username = (String) session.getAttribute("username");
@@ -258,7 +279,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// �鿴������Ϣ
+	
 	@RequestMapping(value = "/chuqingList.do")
 	public ModelAndView chuqingList(HttpSession session) throws IOException {
 		List<Chuqing> resume = InformationService.selectAllChuqing();
@@ -268,7 +289,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// �鿴ĳһ��������Ϣ
+
 	@RequestMapping(value = "/chuqingInfo.do")
 	public ModelAndView chuqingInfo(HttpServletRequest request,
 			HttpSession session) throws IOException {
@@ -281,7 +302,7 @@ public class InformationController {
 		return mv;
 	}
 
-	// ��������
+	
 	@RequestMapping(value = "/updateChuqing.do")
 	@ResponseBody
 	public String updateChuqing(@RequestParam int id, String status,
@@ -289,7 +310,7 @@ public class InformationController {
 		InformationService.updateChuqing(id, status);
 		return "true";
 	}
-	// ɾ������
+
 		@ResponseBody
 		@RequestMapping("/deleteChuqing")
 		public String deleteChuqing(Integer id) {

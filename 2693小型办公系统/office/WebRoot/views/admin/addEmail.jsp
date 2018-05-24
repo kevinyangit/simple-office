@@ -99,6 +99,10 @@
 	        //var fsperson = document.getElementById("fsperson").value;
 	        var fsperson = "公司";
 			var jsperson = document.getElementById("jsperson").value;
+			if(null == jsperson){
+			layer.msg('请填接收人!',{icon: 2,time:2000});
+					return false;
+			}
 			var time = document.getElementById("time").value;
 			var thing = document.getElementById("thing").value;
 			$.post("${domain}/insertEmail.do",{

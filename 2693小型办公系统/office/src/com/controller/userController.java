@@ -47,23 +47,48 @@ public class userController {
 		user.setGonghao(gonghao);
 		user.setName(name);
 		user.setStatus("员工");
-		userService.insertUser(user);
-		/*
-		 * 注册成功，前往登录页进行登录
-		 */
-		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().write("<script>alert('注册成功，前往登录页进行登录');</script>");
-		response.getWriter().flush();
-		return "views/login/login";
+		Integer userID = userService.selectId(username);
+		String repeatWorkerNo = userService.selectUSERId(gonghao);
+		if (null != userID) {
+			/*
+			 * 注册失败，昵称重复
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"<script>alert('注册失败，该昵称已经存在');</script>");
+			response.getWriter().flush();
+			return "views/login/addYuangong";
+		} else if (repeatWorkerNo != null) {
+			/*
+			 * 注册失败，工号重复
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"<script>alert('注册失败，该工号已经存在');</script>");
+			response.getWriter().flush();
+			return "views/login/addYuangong";
+		} else {
+			userService.insertUser(user);
+			/*
+			 * 注册成功，前往登录页进行登录
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"<script>alert('注册成功，前往登录页进行登录');</script>");
+			response.getWriter().flush();
+			return "views/login/login";
+		}
+
 	}
 
 	// 登录
 	@RequestMapping(value = "/userLogin.do")
 	@ResponseBody
-	public int userLogin(@RequestParam String username,String status, String password,
-			HttpServletRequest request) throws IOException {
+	public int userLogin(@RequestParam String username, String status,
+			String password, HttpServletRequest request) throws IOException {
 		HttpSession session = request.getSession(true);
-		if (password != "" && password.equals(userService.findPwd(username,status))) {
+		if (password != ""
+				&& password.equals(userService.findPwd(username, status))) {
 			session.setAttribute("username", username);
 			session.setAttribute("status", status);
 			return 1;
@@ -92,17 +117,38 @@ public class userController {
 		user.setGonghao(gonghao);
 		user.setName(name);
 		user.setStatus("经理");
-		userService.insertUser(user);
-		/*
-		 * 注册成功，前往登录页进行登录
-		 */
-		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().write("<script>alert('注册成功，前往登录页进行登录');</script>");
-		response.getWriter().flush();
-		return "views/login/login";
+		Integer userID = userService.selectId(username);
+		String repeatWorkerNo = userService.selectUSERId(gonghao);
+		if (null != userID) {
+			/*
+			 * 注册失败，昵称重复
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"<script>alert('注册失败，该昵称已经存在');</script>");
+			response.getWriter().flush();
+			return "views/login/addJingli";
+		} else if (repeatWorkerNo != null) {
+			/*
+			 * 注册失败，工号重复
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write(
+					"<script>alert('注册失败，该工号已经存在');</script>");
+			response.getWriter().flush();
+			return "views/login/addJingli";
+		} else {
+			
+			userService.insertUser(user);
+			/*
+			 * 注册成功，前往登录页进行登录
+			 */
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().write("<script>alert('注册成功，前往登录页进行登录');</script>");
+			response.getWriter().flush();
+			return "views/login/login";
+		}
 	}
-
-
 	// 用户列表
 	@RequestMapping("/userTable.do")
 	public String userTable(HttpSession session) {
@@ -133,17 +179,19 @@ public class userController {
 	// 更新用户信息
 	@ResponseBody
 	@RequestMapping(value = "/updateUserInfo")
-	public String upUserInfo(@RequestParam Integer id, String username, String gonghao,
-			String name,String sex, String age, String email, String phone) {
-		userService.updateUser(id, username, gonghao, name, sex, age, email, phone);
+	public String upUserInfo(@RequestParam Integer id, String username,String password,
+			String gonghao, String name, String sex, String age, String email,
+			String phone) {
+		userService.updateUser(id, username,password, gonghao, name, sex, age, email,
+				phone);
 		return "true";
 	}
 
 	// 注销
-		@RequestMapping("/exit")
-		public ModelAndView exit(HttpSession session) {
-			session.invalidate();
-			return new ModelAndView("index");
-		}
+	@RequestMapping("/exit")
+	public ModelAndView exit(HttpSession session) {
+		session.invalidate();
+		return new ModelAndView("index");
+	}
 
 }

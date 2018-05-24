@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int selectId(String username) {
+	public Integer selectId(String username) {
 		// TODO Auto-generated method stub
 		return userMapper.selectId(username);
 	}
@@ -60,10 +60,17 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void updateUser(int id, String username, String gonghao,
+	public void updateUser(int id, String username,String password, String gonghao,
 			String name, String sex, String age, String email, String phone) {
 		// TODO Auto-generated method stub
-		userMapper.updateUser(id, username, gonghao, name, sex, age, email, phone);
+		userMapper.updateUser(id, username,password, gonghao, name, sex, age, email, phone);
+	}
+
+	@Override
+	public String selectUSERId(String gonghao) {
+		// TODO Auto-generated method stub
+		return  userMapper.selectUSERId(gonghao);
+	
 	}
       
 }
