@@ -8,6 +8,8 @@ public class Chuqing {
      String context;
      String status;
      String timeranges;
+     String startDate;
+     String endDate;
 	public int getId() {
 		return id;
 	}
@@ -49,6 +51,18 @@ public class Chuqing {
 	}
 	public void setTimeranges(String timeranges) {
 		this.timeranges = timeranges;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
     
 }

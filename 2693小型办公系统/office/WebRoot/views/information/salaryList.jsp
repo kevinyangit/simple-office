@@ -79,6 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>月份</td>
                     <td>基本工资</td>
                     <td>绩效工资</td>
+                    <td>请假天数</td>
                     <td>总工资</td>
                     <td></td>
                 </tr>
@@ -89,7 +90,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td>${item.month}</td>
                     <td>${item.jibensalary}</td>
                     <td>${item.jixiaosalary}</td>
-                    <td>${item.totalSalary}</td>
+                    <td>${item.qingJiaDate}</td>
+                    <td>${item.total}</td>
 <!--                     <td><a href="javascript:void(0);" onClick="alert('确认成功！')">确认</a></td>
  -->                </tr>
                 </c:forEach>

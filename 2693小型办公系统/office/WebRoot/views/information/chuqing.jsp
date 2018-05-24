@@ -36,6 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function addResume(){
 	var shengqingtype=$("#shengqingtype").val();
 	var context=$("#context").val();
+	var startDate=$("#startDate").val();
+	var endDate=$("#endDate").val();
 	var timeranges=$("#timeranges").val();
 			if(shengqingtype==""||context==""){
 				alert("请把信息填写完整!");   
@@ -45,6 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			'timeranges':timeranges,
 				'chuqingtype' : shengqingtype,
 				'context' : context,
+				'startDate' : startDate,
+				'endDate' : endDate
 			},function(result){
 				if(result == "true"){
 					alert("申请上传成功！");
@@ -78,6 +82,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <option>外出</option>
                             <option>休假</option>
                     </td>
+                </tr>
+                <tr>
+                    <th>开始时间：</th>
+                    <td><input type="text" id="startDate"></td>
+                </tr>
+                <tr>
+                    <th>结束时间：</th>
+                    <td><input type="text" id="endDate"></td>
                 </tr>
                 <tr>
                     <th>请假天数：</th>

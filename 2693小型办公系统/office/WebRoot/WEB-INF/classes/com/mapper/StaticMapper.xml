@@ -3,15 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.StaticMapper">
     <select id="staticLowestSalaryEveryYear"  resultType="com.dto.output.SalaryEveryYeary">
-    		SELECT `year`, MIN(jibensalary + jixiaosalary) as salary ,username as userName FROM salary GROUP BY `year`
+    		SELECT `year`, MIN(`total`) as salary ,username as userName FROM salary GROUP BY `year`
     </select>
     <select id="staticHighSalaryEveryYear"  resultType="com.dto.output.SalaryEveryYeary">
-    		SELECT `year`, MAX(jibensalary + jixiaosalary) as salary ,username as userName FROM salary GROUP BY `year`
+    		SELECT `year`, MAX(`total`) as salary ,username as userName FROM salary GROUP BY `year`
     </select>
     <select id="staticTotalSalaryEveryYear"  resultType="com.dto.output.SalaryEveryYeary">
-    		SELECT `year`, SUM(jibensalary + jixiaosalary) as salary  FROM salary GROUP BY `year`
+    		SELECT `year`, SUM(`total`) as salary  FROM salary GROUP BY `year`
     </select>
     <select id="staticAverageSalaryEveryYear"  resultType="com.dto.output.SalaryEveryYeary">
-    		SELECT `year`, AVG(jibensalary + jixiaosalary) as salary FROM salary GROUP BY `year`
+    		SELECT `year`, AVG(`total`) as salary FROM salary GROUP BY `year`
     </select>
 </mapper>

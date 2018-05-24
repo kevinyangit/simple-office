@@ -19,8 +19,10 @@ import com.model.Chuqing;
 import com.model.Conference;
 import com.model.Email;
 import com.model.Rcap;
+import com.model.ResultBean;
 import com.model.Salary;
 import com.model.Shenqing;
+import com.model.User;
 import com.service.InformationServiceImpl;
 import com.service.UserService;
 
@@ -47,7 +49,7 @@ public class InformationController {
 		
 		  if(userService.selectId(username) == null){
 				/*
-				 * Ìí¼ÓÊ§°Ü£¬Ã»ÓÐ¸ÃÓÃ»§
+				 * ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½Ã»ï¿½Ð¸ï¿½ï¿½Ã»ï¿½
 				 */
 				return "false"; 
 			  
@@ -105,7 +107,7 @@ public class InformationController {
 		
 		  if(userService.selectId(jsperson)<0){
 				/*
-				 * Ìí¼ÓÊ§°Ü£¬Ã»ÓÐ¸ÃÓÃ»§
+				 * ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½Ã»ï¿½Ð¸ï¿½ï¿½Ã»ï¿½
 				 */
 				return "false"; 
 		  }else{
@@ -171,10 +173,10 @@ public class InformationController {
 	@RequestMapping(value = "/insertSalary.do")
 	@ResponseBody
 	public String insertSalary(@RequestParam String username, String year,
-			String month, String jibensalary, String jixiaosalary)
+			String month, String jibensalary, String jixiaosalary,String kouQian, String qingJiaDate,String total)
 			throws IOException {
 		InformationService.insertSalary(username, year, month, jibensalary,
-				jixiaosalary);
+				jixiaosalary,kouQian,qingJiaDate,total);
 		return "true";
 	}
 
@@ -257,13 +259,13 @@ public class InformationController {
 	
 	@RequestMapping(value = "/insertChuqing.do")
 	@ResponseBody
-	public String Chuqing(@RequestParam String chuqingtype, String context,String timeranges,
+	public String Chuqing(@RequestParam String chuqingtype, String context,String timeranges,String startDate,String endDate,
 			HttpSession session) throws IOException {
 		String username = (String) session.getAttribute("username");
 		Date day = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = df.format(day);
-		InformationService.insertChuqing(username, chuqingtype, date, context,
+		InformationService.insertChuqing(username, chuqingtype, date,startDate, endDate, context,
 				"ç”³è¯·",timeranges);
 		return "true";
 	}
@@ -316,5 +318,19 @@ public class InformationController {
 		public String deleteChuqing(Integer id) {
 			InformationService.deleteChuqing(id);
 			return "true";
+		}
+		@ResponseBody
+		@RequestMapping("/chuqing/day.do")
+		public ResultBean<String> getChuQingDay(String username, String monthStr) {
+			ResultBean<String> result = new ResultBean<String>();
+			try {
+				String date = InformationService.getChuQingDay(username, monthStr);
+				result.setData(date);
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.setCode(ResultBean.UNKNOWN_EXCEPTION);
+				result.setMsg(ResultBean.MESSAGE_ERROR);
+			}
+			return result;
 		}
 }

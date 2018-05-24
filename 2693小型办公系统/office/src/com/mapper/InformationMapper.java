@@ -8,30 +8,32 @@ import com.model.Rcap;
 import com.model.Salary;
 import com.model.Shenqing;
 public interface InformationMapper {
-	void insertRcap(String username,String time,String thing);//Ìí¼ÓÈÕ³Ì°²ÅÅ
+	void insertRcap(String username,String time,String thing);//ï¿½ï¿½ï¿½ï¿½Õ³Ì°ï¿½ï¿½ï¿½
 	List<Rcap> selectAllRcap();
 	List<Rcap> selectOneRcap(String username);	
 	void deleteRcap(int id);
-	void insertEmail(String fsperson,String jsperson,String time,String context);//Ìí¼ÓÓÊ¼şĞÅÏ¢
+	void insertEmail(String fsperson,String jsperson,String time,String context);//ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ï¢
 	List<Email> selectAllEmail();	
 	List<Email> selectMyEmail(String jsperson);
 	void deleteEmail(int id);
-	void insertConference(String time,String location,String context);//Ìí¼Ó»áÒéĞÅÏ¢
+	void insertConference(String time,String location,String context);//ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	List<Conference> selectAllConference();	
 	void deleteConference(int id);
-	void insertSalary(String username,String year,String month,String jibensalary,String jixiaosalary);//Ìí¼ÓĞ½Ë®ĞÅÏ¢
+	void insertSalary(String username,String year,String month,String jibensalary,String jixiaosalary,String kouQian, String qingJiaDate,String total);//ï¿½ï¿½ï¿½Ğ½Ë®ï¿½ï¿½Ï¢
 	List<Salary> selectAllSalary();	
 	List<Salary> selectOneSalary(String username);
 	void deleteSalary(int id);
-	void insertShengqing(String username,String shengqingtype,String date,String context,String status);//Ìí¼ÓÉêÇëĞÅÏ¢
+	void insertShengqing(String username,String shengqingtype,String date,String context,String status);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	List<Shenqing> selectOneShengqing(String username);
 	List<Shenqing> selectAllShengqing();
 	List<Shenqing> selectShengqingById(int id);
-	void updateShengqing(int id,String status);//¸üĞÂÉêÇë×´Ì¬
-	void insertChuqing(String username,String chuqingtype,String date,String context,String status,String timeranges);//Ìí¼Ó¿¼ÇÚĞÅÏ¢
+	void updateShengqing(int id,String status);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	void insertChuqing(String username,String chuqingtype,String date,String startDate, String endDate,String context,String status,String timeranges);//ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	List<Chuqing> selectOneChuqing(String username);
 	List<Chuqing> selectAllChuqing();
 	List<Chuqing> selectChuqingById(int id);
-	void updateChuqing(int id,String status);//¸üĞÂÉêÇë×´Ì¬
-	void deleteChuqing(int id);//É¾³ıÉêÇë
+	void updateChuqing(int id,String status);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	void deleteChuqing(int id);//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//è·å–è¯·å‡çš„å¤©æ•°
+	String getChuQingDay(String username, String monthStr);
 }

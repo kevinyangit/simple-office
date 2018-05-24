@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.output.StaticSalary;
 import com.model.Admin;
+import com.model.ResultBean;
 import com.model.User;
 import com.service.UserService;
 
@@ -194,4 +196,19 @@ public class userController {
 		return new ModelAndView("index");
 	}
 
+	// 用户列表
+	@RequestMapping("/user/list.do")
+	@ResponseBody
+	public ResultBean<List<User>> list(HttpSession session) {
+		ResultBean<List<User>> result = new ResultBean<List<User>>();
+		try {
+			List<User> list = userService.selectUser();
+			result.setData(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(ResultBean.UNKNOWN_EXCEPTION);
+			result.setMsg(ResultBean.MESSAGE_ERROR);
+		}
+		return result;
+	}
 }

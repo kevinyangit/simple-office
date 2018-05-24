@@ -74,7 +74,7 @@
                             <div class="header">
                                 <p class="category">请选择你要进行的操作</p>
                                 <h4 class="title" ><button  style="float: left;" class="btn btn-info btn-fill " onclick="add()">增加</button></h4>
-                                <h4 class="title"   style="margin-left: 750px ;" > <input  class="btn btn-info btn-fill "  type="text" placeholder="用户名"  style="float: left; background-color: white; width: 150px"> </input>  <button  style="float: left;"  class="btn btn-info btn-fill " onclick="selectSalary()">搜索</button></h4>
+                                <!-- <h4 class="title"   style="margin-left: 750px ;" > <input  class="btn btn-info btn-fill "  type="text" placeholder="用户名"  style="float: left; background-color: white; width: 150px"> </input>  <button  style="float: left;"  class="btn btn-info btn-fill " onclick="selectSalary()">搜索</button></h4> -->
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
@@ -85,6 +85,8 @@
                                     	<th>月份</th>
                                     	<th>基本工资</th>
                                     	<th>绩效工资</th>
+                                    	<th>请假天数</th>
+                                    	<th>扣钱单价</th>
                                     	<th>总工资</th>
                                     	<th>操作</th>
                                     </thead>
@@ -97,7 +99,9 @@
                                         	<td>${list.month}</td>
                                         	<td>${list.jibensalary}</td>
                                         	<td>${list.jixiaosalary}</td>
-                                        	<td>${list.totalSalary} </td>
+                                        	<td>${list.qingJiaDate}</td>
+                                        	<td>${list.kouQian}</td>
+                                        	<td>${list.total} </td>
                                         	<td>
                                         	
                                         	<%-- <button class="btn btn-primary btn-fill " onclick="update(${list.id})">编辑</button> --%>

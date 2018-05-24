@@ -2,6 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+				<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
 	<!--  <typeAliases> 
 	<typeAlias alias="User" type="com.model.User"/> 
 	<typeAlias alias="Goods" type="com.model.Goods"/>
@@ -12,8 +15,6 @@
 		</mappers>-->
    <typeAliases> <package name="com.model"/> </typeAliases> 
 	<mappers> <package name="com.mapper"/> </mappers> 
-	
-	
     
 </configuration>
 

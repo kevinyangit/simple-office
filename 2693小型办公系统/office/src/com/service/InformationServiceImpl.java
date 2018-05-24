@@ -78,9 +78,9 @@ public class InformationServiceImpl implements InformationService{
 
 	@Override
 	public void insertSalary(String username, String year, String month,
-			String jibensalary, String jixiaosalary) {
+			String jibensalary, String jixiaosalary,String kouQian, String qingJiaDate,String total) {
 		// TODO Auto-generated method stub
-		informationMapper.insertSalary(username, year, month, jibensalary, jixiaosalary);
+		informationMapper.insertSalary(username, year, month, jibensalary, jixiaosalary,kouQian,qingJiaDate,total);
 	}
 
 	@Override
@@ -116,9 +116,9 @@ public class InformationServiceImpl implements InformationService{
 
 	@Override
 	public void insertChuqing(String username, String chuqingtype,
-			String date, String context, String status,String timeranges) {
+			String date, String startDate, String endDate, String context, String status,String timeranges) {
 		// TODO Auto-generated method stub
-		informationMapper.insertChuqing(username, chuqingtype, date, context, status,timeranges);
+		informationMapper.insertChuqing(username, chuqingtype, date, startDate, endDate, context, status,timeranges);
 	}
 
 	@Override
@@ -181,6 +181,11 @@ public class InformationServiceImpl implements InformationService{
 		// TODO Auto-generated method stub
 		informationMapper.deleteChuqing(id);
 	}
+
+	public String getChuQingDay(String username, String monthStr) {
+		return informationMapper.getChuQingDay(username, monthStr);
+	}
+
 
 	
 }

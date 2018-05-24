@@ -53,8 +53,10 @@
 										<label>
 											用户名
 										</label>
-										<input type="text" class="form-control border-input"
-											placeholder="用户名" id="account">
+										   <select class="form-control" placeholder="用户名" id="account">
+									    </select>
+						<!-- 				<input type="text" class="form-control border-input"
+											placeholder="用户名" id="account"> -->
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -73,31 +75,31 @@
 										</label>
 										<select name="month" id="month"
 											class="form-control border-input">
-											<option value="1">
+											<option value="01">
 												一月份
 											</option>
-											<option value="2">
+											<option value="02">
 												二月份
 											</option>
-											<option value="3">
+											<option value="03">
 												三月份
 											</option>
-											<option value="4">
+											<option value="04">
 												四月份
 											</option>
-											<option value="5">
+											<option value="05">
 												五月份
 											</option>
-											<option value="6">
+											<option value="06">
 												六月份
 											</option>
-											<option value="7">
+											<option value="07">
 												七月份
 											</option>
-											<option value="8">
+											<option value="08">
 												八月份
 											</option>
-											<option value="9">
+											<option value="09">
 												九月份
 											</option>
 											<option value="10">
@@ -130,6 +132,33 @@
 										</label>
 										<input type="text" class="form-control border-input"
 											placeholder="绩效工资" id="jixiaosalary">
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group">
+										<label>
+											请假天数
+										</label>
+										<input type="text" class="form-control border-input"
+											placeholder="请假天数" id="qingJiaDate">
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group">
+										<label>
+											扣钱单价
+										</label>
+										<input type="text" class="form-control border-input"
+											placeholder="扣钱单价" id="kouQian" >
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group">
+										<label>
+											合计
+										</label>
+										<input type="text" class="form-control border-input"
+											placeholder="合计" id="total">
 									</div>
 								</div>
 							</div>
@@ -182,18 +211,40 @@
 	<script src="${domain}/assets/js/demo.js"></script>
 	<script src="${domain}/js/layer.js"></script>
 	<script type="text/javascript">
+	//初始化用户列表
+	function initUserList(){
+		$.post("${domain}//user/list.do",{
+		},function(result){
+			if(result.code== 0){
+				if(result.data != null){
+					for (var i = 0; i < result.data.length; i++) {
+						$('.form-group #account').append("<option value='" + result.data[i].username + "'>" +result.data[i].username  + "</option>")
+					}
+				}
+			}else{
+				console.log('system error');
+			}
+		})
+	}
+	initUserList();
 	function update(){
 			var username = document.getElementById("account").value;
 			var year = document.getElementById("year").value;
 			var month = document.getElementById("month").value;
 			var jibensalary = document.getElementById("jibensalary").value;
 			var jixiaosalary = document.getElementById("jixiaosalary").value;
+			var qingJiaDate = document.getElementById("qingJiaDate").value;
+			var kouQian = document.getElementById("kouQian").value;
+			var total = document.getElementById("total").value;
 			$.post("${domain}/insertSalary.do",{
 				'username' : username,
 				'year' : year,
 				'month' : month,
 				'jibensalary':jibensalary,
 				'jixiaosalary' : jixiaosalary,
+				'qingJiaDate' : qingJiaDate,
+				'kouQian' : kouQian,
+				'total' : total
 			},function(result){
 				if(result=="false"){
 					layer.msg('用户名已存在!',{icon: 2,time:2000});
@@ -205,5 +256,48 @@
 				}
 			})
 	}
+	
+	//初始化请假天数
+	$(".form-group #month").change(function(){
+		var year = $('#year').val();
+		var month = $(this).children('option:selected').val();
+		var username = document.getElementById("account").value;
+
+		var monthStr = year + "-" + month;
+		$.post("${domain}/chuqing/day.do",{
+			'username': username,
+			'monthStr': monthStr
+		},function(result){
+			if(result.code== 0){
+				if(result.data != null){
+					$('#qingJiaDate').val(result.data);
+				}else{
+					$('#qingJiaDate').val('');
+				}
+			}else{
+				console.log('system error');
+			}
+		})
+	  });
+	
+	//初始化合计
+	$('#kouQian').blur(function(){
+		var jibensalary = document.getElementById("jibensalary").value;
+		var jixiaosalary = document.getElementById("jixiaosalary").value;
+		var qingJiaDate = $('#qingJiaDate').val();
+		var kouQian = $('#kouQian').val();
+		var total = (parseInt(jibensalary) + parseInt(jixiaosalary)) - (qingJiaDate * kouQian );
+		$('#total').val(total);
+	});
+	$('#total').blur(function(){
+		var jibensalary = document.getElementById("jibensalary").value;
+		var jixiaosalary = document.getElementById("jixiaosalary").value;
+		var qingJiaDate = $('#qingJiaDate').val();
+		var kouQian = $('#kouQian').val();
+		var total = (parseInt(jibensalary) + parseInt(jixiaosalary)) - (qingJiaDate * kouQian );
+		$('#total').val(total);
+	});
+	
+	
 	</script>
 </html>

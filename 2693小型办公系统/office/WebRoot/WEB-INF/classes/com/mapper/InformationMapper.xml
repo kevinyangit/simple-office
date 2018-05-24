@@ -39,11 +39,11 @@
 	delete from conference where id=#{0}
 	</delete>
 	<select id="insertSalary" parameterType="com.model.Salary">
-		insert into salary(username,year,month,jibensalary,jixiaosalary)
-		values(#{0},#{1},#{2},#{3},#{4})
+		insert into salary(username,year,month,jibensalary,jixiaosalary,kouQian, qingJiaDate, total)
+		values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})
 	</select>
 	<select id="selectAllSalary" resultType="com.model.Salary">
-		select * from salary
+		select * from salary order by year desc, month desc
 	</select>
 	<select id="selectOneSalary" resultType="com.model.Salary">
 		select * from salary where username=#{0}
@@ -62,11 +62,14 @@
 		select * from chuqing where username=#{0}
 	</select>
 	<select id="insertChuqing" parameterType="com.model.Chuqing">
-		insert into chuqing(username,chuqingtype,date,context,status,timeranges)
-		values(#{0},#{1},#{2},#{3},#{4},#{5})
+		insert into chuqing(username,chuqingtype,date,startDate, endDate, context,status,timeranges)
+		values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})
 	</select>
 	<select id="selectAllShengqing" resultType="com.model.Shenqing">
 		select * from shengqing
+	</select>
+	<select id="getChuQingDay" resultType="String"	>
+		SELECT SUM(timeranges) FROM chuqing WHERE username = #{0} AND DATE_FORMAT(startDate,'%Y-%m') = #{1}
 	</select>
 	<select id="selectAllChuqing" resultType="com.model.Chuqing">
 		select * from chuqing
