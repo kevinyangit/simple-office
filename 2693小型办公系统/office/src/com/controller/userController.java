@@ -29,8 +29,10 @@ public class userController {
 
 	// 员工注册
 	@RequestMapping(value = "/yuangongRegister.do")
-	public String yuangong(HttpServletRequest request,
+	@ResponseBody
+	public ResultBean<String> yuangong(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		ResultBean<String> result = new ResultBean<String>();
 		User user = new User();
 		String username = request.getParameter("account");
 		String password = request.getParameter("pwd");
@@ -49,37 +51,37 @@ public class userController {
 		user.setGonghao(gonghao);
 		user.setName(name);
 		user.setStatus("员工");
-		Integer userID = userService.selectId(username);
-		String repeatWorkerNo = userService.selectUSERId(gonghao);
-		if (null != userID) {
-			/*
-			 * 注册失败，昵称重复
-			 */
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"<script>alert('注册失败，该昵称已经存在');</script>");
-			response.getWriter().flush();
-			return "views/login/addYuangong";
-		} else if (repeatWorkerNo != null) {
-			/*
-			 * 注册失败，工号重复
-			 */
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"<script>alert('注册失败，该工号已经存在');</script>");
-			response.getWriter().flush();
-			return "views/login/addYuangong";
-		} else {
-			userService.insertUser(user);
-			/*
-			 * 注册成功，前往登录页进行登录
-			 */
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(
-					"<script>alert('注册成功，前往登录页进行登录');</script>");
-			response.getWriter().flush();
-			return "views/login/login";
-		}
+		try {
+			Integer userID = userService.selectId(username);
+			String repeatWorkerNo = userService.selectUSERId(gonghao);
+			if (null != userID) {
+				/*
+				 * 注册失败，昵称重复
+				 */
+				result.setData("nameExist");
+				//注册失败，该昵称已经存在
+				
+			} else if (repeatWorkerNo != null) {
+				/*
+				 * 注册失败，工号重复
+				 */
+				//注册失败，该工号已经存在
+				result.setData("gonghaoExist");
+			} else {
+				userService.insertUser(user);
+				/*
+				 * 注册成功，前往登录页进行登录
+				 */
+				//注册成功，前往登录页进行登录
+				result.setData("login");
+				//return "views/login/login";
+			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.setCode(ResultBean.UNKNOWN_EXCEPTION);
+				result.setMsg(ResultBean.MESSAGE_ERROR);
+			}
+			return result;
 
 	}
 

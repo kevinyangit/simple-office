@@ -236,8 +236,14 @@
 			var qingJiaDate = document.getElementById("qingJiaDate").value;
 			var kouQian = document.getElementById("kouQian").value;
 			var total = document.getElementById("total").value;
-			if(total = null || total ==''){
+			if(total == null || total ==''){
 				layer.msg('工资合计不能为空!',{icon: 2,time:2000});
+			}
+			if(qingJiaDate == null || qingJiaDate ==''){
+				qingJiaDate = 0;
+			}
+			if(kouQian == null || kouQian ==''){
+				kouQian = 0;
 			}
 			$.post("${domain}/insertSalary.do",{
 				'username' : username,

@@ -169,7 +169,7 @@ select {
 	margin: 15px 0 0px 15%;
 }
 
-#submit {
+.submit {
 	background-color: #ffb94b;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f),
 		to(#ffb94b) );
@@ -201,7 +201,7 @@ select {
 	margin-right: 20px;
 }
 
-#submit:hover,#submit:focus {
+.submit:hover,#submit:focus {
 	background-color: #fddb6f;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b),
 		to(#fddb6f) );
@@ -212,14 +212,14 @@ select {
 	background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }
 
-#submit:active {
+.submit:active {
 	outline: none;
 	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
 	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
 }
 
-#submit::-moz-focus-inner {
+.submit::-moz-focus-inner {
 	border: none;
 }
 
@@ -243,9 +243,40 @@ select {
 		<script type="text/javascript">
 		
 		
-		function jump(){
-		window.location.href="http://localhost:8080/Recruitment/views/login/login.jsp";
-		}
+	function jump(){
+	window.location.href="${domain}/views/login/login.jsp";
+	}
+	 $(document).ready(function(){
+			$('#register').click(function(){
+				if(!submitFunction()){
+					//检验不通过
+					return false;
+				}
+				//ajax发请求过去
+				$.ajax({
+					type: 'POST',
+					url: '${domain}/yuangongRegister.do',
+					data:$("#login").serialize(),  
+					success:function(result){   
+		               //成功
+		               if(result.code ==0){
+		            	   if(result.data == 'nameExist'){
+		            		   alert('注册失败，该昵称已经存在');
+		            	   }else  if(result.data == 'gonghaoExist'){
+		            		   alert('注册失败，该工号已经存在');
+		            	   }
+		            	   if(result.data == 'login'){
+		            		  
+		            		   window.location.href="${domain}/views/login/login.jsp";
+		            	   }
+		               }else{
+		            	   console.log("system error");
+		               }
+		            }    
+				});
+			});
+	 });
+
 	function submitFunction() {
 	var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
 	var phone=$("#phone").val();
@@ -280,7 +311,7 @@ select {
    return false;
   }
   }
-
+	return true;
 }
 
 
@@ -289,8 +320,8 @@ select {
 
 	</head>
 	<body>
-		<form id="login" onsubmit="return submitFunction()"
-			action="${domain}/yuangongRegister.do" method="post">
+		<form id="login" 
+			>
 
 			<h1>
 				Register
@@ -328,9 +359,9 @@ select {
 
 			<fieldset id="actions">
 
-				<input type="submit" id="submit" value="注册">
+				<input type="button"  class="submit" id="register" value="注册">
 
-				<input type="button" id="submit" value="返回" onclick="jump();">
+				<input type="button" class="submit" value="返回" onclick="jump();">
 
 			</fieldset>
 
